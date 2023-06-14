@@ -68,6 +68,12 @@
     <Build Include="Procedures\spGravarAlunos.sql" />
     <Build Include="Procedures\spEditarAlunos.sql" />
     <Build Include="Procedures\spDeletarAluno.sql" />
+    <Build Include="Procedures\SpTurmaBuscarPorId.sql" />
+    <Build Include="Procedures\spTurmaGravar.sql" />
+    <Build Include="Procedures\SpTurmaBuscarTodas.sql" />
+    <Build Include="Procedures\SpTurmaBuscarPorNome.sql" />
+    <Build Include="Procedures\spTurmaEditar.sql" />
+    <Build Include="Procedures\spTurmaDeletar.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />
