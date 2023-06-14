@@ -109,10 +109,22 @@ namespace FIAP_TDD.Testes.Service
             var aluno = await AlunoTesteFactory.GerarAlunoModelParaTeste();
             var mock = AutoMock.GetLoose();
             var svr = mock.Create<AlunoService>();
-            svr.EditarAluno(aluno);
+            await svr.EditarAluno(aluno);
 
             mock.Mock<IAlunoData>()
                 .Verify(x => x.EditarAluno(aluno), Times.Once());
+        }
+
+        [Fact]
+        public async Task DeletarAluno_Deveria_SerChamadoUmaVez()
+        {
+            var id = 1;
+            var mock = AutoMock.GetLoose();
+            var svr = mock.Create<AlunoService>();
+            await svr.Deletar(id);
+
+            mock.Mock<IAlunoData>()
+                .Verify(x => x.Deletar(1), Times.Once());
         }
     }
 }

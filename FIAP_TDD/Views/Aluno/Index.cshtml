@@ -25,14 +25,14 @@
                 <td>
 
                     <div class="btn-group">
-                        <button type="button" class="btn btn-danger">Acões</button>
+                        <button type="button" data-bs-toggle="dropdown" class="btn btn-danger">Acões</button>
                         <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" asp-action="Editar" asp-route-id="@item.Id">Editar</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item " href="#">Deletar</a></li>
+                            <li><button class="dropdown-item" onclick="DeletarAluno(@item.Id)">Deletar</button></li>
                         </ul>
                     </div>
 
@@ -41,3 +41,26 @@
         }
     </tbody>
 </table>
+
+@section Scripts{
+    <script>
+        function DeletarAluno(id){
+            var data = {id:id}
+            $.ajax({
+                method:"POST",
+                url:"/Aluno/Deletar",
+                data:data,
+                success:(retorno)=>{
+                    if (retorno == true) {
+                        alert("Aluno deletado com sucesso")
+                        location.reload()
+                    }
+                    else {
+                        console.log(retorno)
+                        alert("Erro ao deletar o Aluno")
+                    }
+                }
+            });
+        }
+    </script>
+}

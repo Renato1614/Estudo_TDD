@@ -1,6 +1,7 @@
 ﻿using FIAP_TDD.Data.Models;
 using FIAP_TDD.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 
 namespace FIAP_TDD.Controllers
 {
@@ -43,8 +44,24 @@ namespace FIAP_TDD.Controllers
         [HttpPost]
         public async Task<IActionResult> Editar(AlunoModel aluno)
         {
-            await _aluno.EditarAluno(aluno);
-            return RedirectToAction(nameof(Index));
+            if (await _aluno.EditarAluno(aluno))
+            {
+                return RedirectToAction(nameof(Index));
+
+            }
+            return View(aluno);
         }
+
+        [HttpPost]
+        public async Task<bool> Deletar(int id)
+        {
+            if (id != 0)
+            {
+                return await _aluno.Deletar(id);
+
+            }
+            return false;
+        }
+        
     }
 }

@@ -28,6 +28,12 @@ namespace FIAP_TDD.Data.Data
             return await _db.LoadData<AlunoModel, dynamic>("dbo.spAluno_BuscarTodos", new { });
         }
 
+        public async  Task Deletar(int id)
+        {
+            await _db.SaveData("dbo.spDeletarAluno", new { Id = id });
+
+        }
+
         public async Task EditarAluno(AlunoModel aluno)
         {
             await _db.SaveData("dbo.spEditarAlunos", new { Nome = aluno.Nome, Usuario = aluno.Usuario, Id=aluno.Id });

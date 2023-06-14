@@ -67,6 +67,7 @@
     <Build Include="Procedures\spAluno_BuscarPorId.sql" />
     <Build Include="Procedures\spGravarAlunos.sql" />
     <Build Include="Procedures\spEditarAlunos.sql" />
+    <Build Include="Procedures\spDeletarAluno.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />

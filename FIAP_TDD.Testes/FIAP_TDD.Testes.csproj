@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\FIAP_TDD.Data\FIAP_TDD.Data.csproj" />
     <ProjectReference Include="..\FIAP_TDD\FIAP_TDD.csproj" />
   </ItemGroup>

@@ -8,5 +8,6 @@ namespace FIAP_TDD.Services
         Task<AlunoModel> BuscarPorId(int id);
         Task<bool> GravarAluno(AlunoModel aluno);
         Task<bool> EditarAluno(AlunoModel aluno);
+        Task<bool> Deletar(int id);
     }
 }
