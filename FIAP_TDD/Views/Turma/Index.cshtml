@@ -1,0 +1,67 @@
+﻿@model IEnumerable<TurmaModel>
+
+<div>
+    <h2>Lista De Turmas</h2>
+    <a class="btn btn-primary" asp-action="Criar">Criar Turma Nova</a>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Curso Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Ano</th>
+            <th scope="col">Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var turma in Model)
+        {
+            <tr>
+                <td></td>
+                <td>@turma.Curso_Id</td>
+                <td>@turma.Turma</td>
+                <td>@turma.Ano</td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" data-bs-toggle="dropdown" class="btn btn-danger">Acões</button>
+                        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-action="Editar" asp-route-id="@turma.Id">Editar</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><button class="dropdown-item" onclick="DeletarTurma(@turma.Id)">Deletar</button></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@section Scripts{
+    <script>
+        function DeletarTurma(id) {
+            var data = { id: id }
+            $.ajax({
+                method: "POST",
+                url: "/Turma/Deletar",
+                data: data,
+                success: (retorno) => {
+                    if (retorno == true) {
+                        alert("Turma deletada com sucesso")
+                        location.reload()
+                    }
+                    else {
+                        console.log(retorno)
+                        alert("Erro ao deletar a Turma")
+                    }
+                }
+            });
+        }
+    </script>
+}

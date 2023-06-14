@@ -7,9 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<ISqlDataAccess, SqlDataAccess>();
-builder.Services.AddScoped<IAlunoService, AlunoService>();
-builder.Services.AddScoped<IAlunoData, AlunoData>();
+ConfigurarDependecias(builder);
 
 var app = builder.Build();
 
@@ -33,3 +31,12 @@ app.MapControllerRoute(
     pattern: "{controller=Aluno}/{action=Index}/{id?}");
 
 app.Run();
+
+static void ConfigurarDependecias(WebApplicationBuilder builder)
+{
+    builder.Services.AddScoped<ISqlDataAccess, SqlDataAccess>();
+    builder.Services.AddScoped<IAlunoService, AlunoService>();
+    builder.Services.AddScoped<IAlunoData, AlunoData>();
+    builder.Services.AddScoped<ITurmaService, TurmaService>();
+    builder.Services.AddScoped<ITurmaData, TurmaData>();
+}

@@ -1,0 +1,19 @@
+﻿@model TurmaModel
+
+<h2>Criar Turma</h2>
+
+<form method="post" asp-action="Editar">
+    <div class="form-group mt-2">
+        <label asp-for="Turma"></label>
+        <input class="form-control" asp-for="Turma" placeholder="Nome">
+    </div>
+    <div class="form-group mt-2">
+        <label asp-for="Ano"></label>
+        <input class="form-control" asp-for="Ano" placeholder="Nome">
+    </div>
+    <div class="form-group mt-2">
+        <label asp-for="Curso_Id"></label>
+        <input class="form-control" asp-for="Curso_Id" placeholder="Nome">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Editar" />
+</form>
