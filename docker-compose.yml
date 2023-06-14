@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  fiap_tdd:
+    image: ${DOCKER_REGISTRY-}fiaptdd
+    build:
+      context: .
+      dockerfile: FIAP_TDD/Dockerfile
+    networks:
+      - my-network
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Re46753951!@
+    networks:
+      - my-network
+networks:
+  my-network:
