@@ -1,38 +1,35 @@
 pipeline {
-  agent any
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
-    }
+    agent any
 
-    stage('Restore Dependencies') {
-      steps {
-        script {
-          sh 'dotnet restore'
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
         }
 
-      }
-    }
-
-    stage('Build') {
-      steps {
-        script {
-          sh 'dotnet build --configuration Release'
+        stage('Restore Dependencies') {
+            steps {
+                script {
+                    sh 'dotnet restore'
+                }
+            }
         }
 
-      }
-    }
-
-    stage('Unit Tests') {
-      steps {
-        script {
-          sh 'dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage"'
+        stage('Build') {
+            steps {
+                script {
+                    sh 'dotnet build --configuration Release'
+                }
+            }
         }
 
-      }
+        stage('Unit Tests') {
+            steps {
+                script {
+                    sh 'dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage"'
+                }
+            }
+        }
     }
-
-  }
 }
