@@ -79,7 +79,7 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test -p FIAP_TDD.Testes.csproj
+      run: dotnet test -p FIAP_TDD.Testes/FIAP_TDD.Testes.csproj
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
