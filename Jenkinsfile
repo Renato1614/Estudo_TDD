@@ -1,36 +1,33 @@
-﻿pipeline {
+pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-        
+
         stage('Restore Dependencies') {
             steps {
                 script {
-                    def dotnetCmd = isUnix() ? 'dotnet' : 'dotnet.exe'
-                    sh "${dotnetCmd} restore"
+                    sh 'dotnet restore'
                 }
             }
         }
-        
+
         stage('Build') {
             steps {
                 script {
-                    def dotnetCmd = isUnix() ? 'dotnet' : 'dotnet.exe'
-                    sh "${dotnetCmd} build --configuration Release"
+                    sh 'dotnet build --configuration Release'
                 }
             }
         }
-        
+
         stage('Unit Tests') {
             steps {
                 script {
-                    def dotnetCmd = isUnix() ? 'dotnet' : 'dotnet.exe'
-                    sh "${dotnetCmd} test --configuration Release --no-build --collect:\"XPlat Code Coverage\""
+                    sh 'dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage"'
                 }
             }
         }
