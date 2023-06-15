@@ -57,7 +57,7 @@ namespace FIAP_TDD.Testes.Service
             var turma =  await TurmaTesteFactory.GerarTurma();
             var mock = AutoMock.GetLoose();
             mock.Mock<ITurmaData>()
-                .Setup(x => x.BuscarPorNome(turma.Turma,null))
+                .Setup(x => x.BuscarTurmasPorNome(turma.Turma,null))
                 .Returns(TurmaTesteFactory.GerarListaDeTurmas());
             var service = mock.Create<TurmaService>();
             var retorno = await service.Gravar(turma);
@@ -99,7 +99,7 @@ namespace FIAP_TDD.Testes.Service
             var turma = await TurmaTesteFactory.GerarTurma();
             var mock = AutoMock.GetLoose();
             mock.Mock<ITurmaData>()
-                .Setup(x => x.BuscarPorNome(turma.Turma, 1))
+                .Setup(x => x.BuscarTurmasPorNome(turma.Turma, 1))
                 .Returns(TurmaTesteFactory.GerarListaDeTurmas());
 
             var service = mock.Create<TurmaService>();

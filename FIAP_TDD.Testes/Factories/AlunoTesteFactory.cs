@@ -57,5 +57,9 @@ namespace FIAP_TDD.Testes.Factories
         {
             return null;
         }
+        public async static Task<IEnumerable<AlunoModel>> GerarListaVaziaDeAlunosParaTeste()
+        {
+            return new List<AlunoModel>();
+        }
     }
 }

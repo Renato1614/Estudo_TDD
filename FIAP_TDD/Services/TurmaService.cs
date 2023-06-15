@@ -67,7 +67,7 @@ namespace FIAP_TDD.Services
 
         private async Task<bool> VerificaSeJaExisteTurmaComMesmoNome(string nome, int? id)
         {
-            var turmaExistente = await _turmaData.BuscarPorNome(nome,id);
+            var turmaExistente = await _turmaData.BuscarTurmasPorNome(nome,id);
             if (turmaExistente.Any()) return true;
             return false;
         }

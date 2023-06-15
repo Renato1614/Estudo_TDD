@@ -19,30 +19,43 @@ namespace FIAP_TDD.Data.Data
 
         public async Task<AlunoModel?> BuscarPorId(int id)
         {
-            var resultado= await _db.LoadData<AlunoModel?, dynamic>("dbo.spAluno_BuscarPorId", new { Id=id});
+            var resultado = await _db.LoadData<AlunoModel, object>(
+                "dbo.spAluno_BuscarPorId",
+                new { Id = id },
+                "Default");
             return resultado.FirstOrDefault();
         }
 
         public async Task<IEnumerable<AlunoModel>> BuscarTodos()
         {
-            return await _db.LoadData<AlunoModel, dynamic>("dbo.spAluno_BuscarTodos", new { });
+            return await _db.LoadData<AlunoModel, object>(
+                "dbo.spAluno_BuscarTodos",
+                new { });
         }
 
-        public async  Task Deletar(int id)
+        public async Task Deletar(int id)
         {
-            await _db.SaveData("dbo.spDeletarAluno", new { Id = id });
-
+            await _db.SaveData(
+                "dbo.spDeletarAluno",
+                new { Id = id });
         }
 
         public async Task EditarAluno(AlunoModel aluno)
         {
-            await _db.SaveData("dbo.spEditarAlunos", new { Nome = aluno.Nome, Usuario = aluno.Usuario, Id=aluno.Id });
+            var data = new { aluno.Nome, aluno.Usuario, aluno.Id };
+            await _db.SaveData(
+                "dbo.spEditarAlunos", data);
         }
 
         public async Task GravarAluno(AlunoModel aluno)
         {
-            await _db.SaveData("dbo.spGravarAlunos",
-                               new { Nome = aluno.Nome, Usuario = aluno.Usuario, Senha = aluno.Senha });
+            var data = new
+            {
+                aluno.Nome,
+                aluno.Usuario,
+                aluno.Senha
+            };
+            await _db.SaveData("dbo.spGravarAlunos", data);
         }
     }
 }

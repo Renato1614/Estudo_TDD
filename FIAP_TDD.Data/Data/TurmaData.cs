@@ -19,19 +19,22 @@ namespace FIAP_TDD.Data.Data
 
         public async Task<TurmaModel?> BuscarPorId(int id)
         {
-            var turmas = await _db.LoadData<TurmaModel, dynamic>("dbo.SpTurmaBuscarPorId", new { Id = id });
+            var turmas = await _db.LoadData<TurmaModel, dynamic>(
+                "dbo.SpTurmaBuscarPorId",
+                new { Id = id });
             return turmas.FirstOrDefault();
         }
 
-        public async Task<IEnumerable<TurmaModel>> BuscarPorNome(string nome, int? id)
+        public async Task<IEnumerable<TurmaModel>> BuscarTurmasPorNome(string nome, int? id)
         {
             var data = new
             {
                 Nome = nome,
-                Id = id ==null ? 0 : id.Value
+                Id = id == null ? 0 : id.Value
             };
-            return await _db.LoadData<TurmaModel, dynamic>("dbo.SpTurmaBuscarPorNome"
-                                                            , data);
+            return await _db.LoadData<TurmaModel, dynamic>
+                ("dbo.SpTurmaBuscarPorNome"
+                , data);
         }
 
 
@@ -43,7 +46,7 @@ namespace FIAP_TDD.Data.Data
 
         public async Task Deletar(int id)
         {
-            await _db.SaveData("dbo.spTurmaDeletar", new {Id= id});
+            await _db.SaveData("dbo.spTurmaDeletar", new { Id = id });
         }
 
         public async Task Editar(TurmaModel turma)
@@ -55,9 +58,9 @@ namespace FIAP_TDD.Data.Data
         {
             var data = new
             {
-                Curso_Id = turma.Curso_Id,
-                Turma = turma.Turma,
-                Ano = turma.Ano
+                turma.Curso_Id,
+                turma.Turma,
+                turma.Ano
             };
             await _db.SaveData("dbo.spTurmaGravar", data);
         }
