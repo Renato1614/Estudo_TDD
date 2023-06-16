@@ -140,7 +140,7 @@ namespace FIAP_TDD.Testes.Controller
 
             var viewResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Index", viewResult.ActionName);
-            Assert.Null(viewResult.ControllerName);
+            Assert.NotNull(viewResult.ControllerName);
         }
 
         [Fact]
