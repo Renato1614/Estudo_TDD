@@ -21,10 +21,9 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore
-    - name: Teste
-      run: dotnet test
+      run: dotnet restore FIAP_TDD
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore FIAP_TDD/FIAP_TDD.csproj
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test FIAP_TDD.Testes/FIAP_TDD.Testes.csproj
+
